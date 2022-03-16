@@ -1,6 +1,6 @@
 <template>
   <q-dialog ref="dialogRef">
-    <q-card class="lang-dialog">
+    <q-card class="lang-dialog" style="border-radius: 12px">
       <q-card-section>
         <q-btn icon="close" @click="onDialogCancel()" round flat />
       </q-card-section>
@@ -49,7 +49,6 @@ const assign = (value: string) => {
 .lang-dialog {
   color: #222222;
   width: 100%;
-  border-radius: 12px;
 
   h2 {
     font-size: 26px;
