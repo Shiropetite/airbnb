@@ -8,25 +8,25 @@
       <q-space />
 
       <div class="selected row justify-center">
-        <q-btn class="col-12 no-hover" label="Hébergements" rounded no-caps flat />
+        <q-btn class="col-12 no-hover" :label="$t('place_to_stay')" rounded no-caps flat />
         <div class="line"></div>
       </div>
 
       <div class="line-btn row justify-center">
-        <q-btn class="col-12 no-hover" label="Expériences" rounded no-caps flat />
+        <q-btn class="col-12 no-hover" :label="$t('experiences')" rounded no-caps flat />
         <div class="line"></div>
       </div>
 
       <div class="line-btn row justify-center">
-        <q-btn class="col-12 no-hover" label="Expériences en ligne" rounded no-caps flat />
+        <q-btn class="col-12 no-hover" :label="$t('online_experiences')" rounded no-caps flat />
         <div class="line"></div>
       </div>
 
       <q-space />
 
-      <q-btn label="Devenez hôte" rounded no-caps flat />
+      <q-btn :label="$t('become_host')" rounded no-caps flat />
 
-      <q-btn class="q-mr-sm" icon="language" round no-caps flat />
+      <q-btn class="q-mr-sm" icon="language" @click="chooseLanguage()" round no-caps flat />
 
       <q-btn-dropdown
         class="account-btn text-black"
@@ -38,35 +38,35 @@
         no-caps
       >
         <q-list>
-          <q-item clickable v-close-popup @click="onItemClick">
+          <q-item clickable v-close-popup>
             <q-item-section>
-              <q-item-label>Inscription</q-item-label>
+              <q-item-label>{{ $t('sign_up') }}</q-item-label>
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-close-popup @click="onItemClick">
+          <q-item clickable v-close-popup>
             <q-item-section>
-              <q-item-label>Connexion</q-item-label>
+              <q-item-label>{{ $t('log_in') }}</q-item-label>
             </q-item-section>
           </q-item>
 
           <q-separator />
 
-          <q-item clickable v-close-popup @click="onItemClick">
+          <q-item clickable v-close-popup>
             <q-item-section>
-              <q-item-label>Heberger des voyageurs</q-item-label>
+              <q-item-label>{{ $t('host_home') }}</q-item-label>
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-close-popup @click="onItemClick">
+          <q-item clickable v-close-popup>
             <q-item-section>
-              <q-item-label>Créer une expérience</q-item-label>
+              <q-item-label>{{ $t('host_experience') }}</q-item-label>
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-close-popup @click="onItemClick">
+          <q-item clickable v-close-popup>
             <q-item-section>
-              <q-item-label>Aide</q-item-label>
+              <q-item-label>{{ $t('help') }}</q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
@@ -76,7 +76,16 @@
 </template>
 
 <script lang="ts" setup>
+import { Dialog } from 'quasar';
 
+// Components
+import LangDialog from './LangDialog.vue';
+
+const chooseLanguage = () => {
+  Dialog.create({
+    component: LangDialog,
+  })
+}
 </script>
 
 <style lang="scss">
