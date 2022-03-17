@@ -1,3 +1,5 @@
+@import "./search.scss";
+
 body {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
@@ -8,4 +10,16 @@ h2 {
   margin-block-end: 0.83em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+}
+
+.no-hover {
+  .q-focus-helper {
+    visibility: hidden;
+  }
+}
+
+.q-btn {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
 }

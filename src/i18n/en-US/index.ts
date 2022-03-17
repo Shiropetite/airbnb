@@ -13,11 +13,13 @@ export default {
   choose_language: 'Choose a language and region',
   // Search
   location: 'Location',
-  location_placeholder: 'Where are you going',
+  location_placeholder: 'Where are you going ?',
   check_in: 'Check in',
   check_out: 'Check out',
   check_in_out_placeholder: 'Add dates',
   guests: 'Guests',
   guests_placeholder: 'Add guests',
-  search: 'Search'
+  search: 'Search',
+  date: 'Date',
+  date_placeholder: 'Add when you want to go'
 };

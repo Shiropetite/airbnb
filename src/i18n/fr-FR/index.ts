@@ -19,5 +19,7 @@ export default {
   check_in_out_placeholder: 'Quand ?',
   guests: 'Voyageurs',
   guests_placeholder: 'Qui ?',
-  search: 'Rechercher'
+  search: 'Rechercher',
+  date: 'Date',
+  date_placeholder: 'Ajoutez les dates de votre voyage'
 };
