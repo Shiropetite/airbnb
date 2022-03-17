@@ -61,7 +61,9 @@ const updateOption = (newOption: string) => {
 .middle {
   position: absolute;
   top: -62px;
-  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 50%;
   z-index: 9999;
 }
 

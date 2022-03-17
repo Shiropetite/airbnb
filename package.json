@@ -1,8 +1,8 @@
 {
-  "name": "Herbi-and-bi",
+  "name": "airbnb",
   "version": "0.0.1",
-  "description": "",
-  "productName": "Herbi & Bi",
+  "description": "Je refais Airbnb pour m'entrainer en Vue.js + Quasar",
+  "productName": "Airbnb",
   "author": "Shiropetite <59747311+Shiropetite@users.noreply.github.com>",
   "private": true,
   "scripts": {
