@@ -120,6 +120,11 @@ const chooseLanguage = () => {
 
 <style lang="scss">
 .home-header {
+  .q-toolbar {
+    height: 80px;
+    padding: 0 136px;
+  }
+
   .middle {
     position: absolute;
     top: 50%;
@@ -133,47 +138,42 @@ const chooseLanguage = () => {
     }
   }
 
-  .q-toolbar {
-    height: 80px;
-    padding: 0 140px;
+  .q-btn {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+  }
 
-    .q-btn {
-      font-size: 16px;
-      line-height: 20px;
-      font-weight: 400;
+  .no-hover {
+    .q-focus-helper {
+      visibility: hidden;
     }
+  }
 
-    .no-hover {
-      .q-focus-helper {
-        visibility: hidden;
-      }
-    }
+  .line {
+    height: 2px;
+    width: 10px;
+    transition: all linear 0.5s;
+  }
 
+  .selected {
     .line {
-      height: 2px;
+      background-color: white;
+      width: 20px;
+    }
+  }
+
+  .line-btn {
+    button:hover,
+    a:hover {
+      transition: all linear 0.3s;
+      color: rgb(182, 182, 182);
+    }
+
+    button:hover ~ .line,
+    a:hover ~ .line {
+      background-color: white;
       width: 10px;
-      transition: all linear 0.5s;
-    }
-
-    .selected {
-      .line {
-        background-color: white;
-        width: 20px;
-      }
-    }
-
-    .line-btn {
-      button:hover,
-      a:hover {
-        transition: all linear 0.3s;
-        color: rgb(182, 182, 182);
-      }
-
-      button:hover ~ .line,
-      a:hover ~ .line {
-        background-color: white;
-        width: 10px;
-      }
     }
   }
 }

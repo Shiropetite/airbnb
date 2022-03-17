@@ -9,6 +9,15 @@ export default {
   host_home: "Host your home",
   host_experience: "Host an experience",
   help: "Help",
-  // langDialog
-  choose_language: 'Choose a language and region'
+  // lang dialog
+  choose_language: 'Choose a language and region',
+  // Search
+  location: 'Location',
+  location_placeholder: 'Where are you going',
+  check_in: 'Check in',
+  check_out: 'Check out',
+  check_in_out_placeholder: 'Add dates',
+  guests: 'Guests',
+  guests_placeholder: 'Add guests',
+  search: 'Search'
 };

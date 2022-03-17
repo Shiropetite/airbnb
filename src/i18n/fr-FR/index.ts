@@ -10,5 +10,14 @@ export default {
   host_experience: "Créer une expérience",
   help: "Aide",
   // lang dialog
-  choose_language: 'Choisissez une langue et une région'
+  choose_language: 'Choisissez une langue et une région',
+  // Search
+  location: 'Destination',
+  location_placeholder: 'Où allez-vous ?',
+  check_in: 'Arrivée',
+  check_out: 'Départ',
+  check_in_out_placeholder: 'Quand ?',
+  guests: 'Voyageurs',
+  guests_placeholder: 'Qui ?',
+  search: 'Rechercher'
 };
