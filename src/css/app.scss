@@ -23,3 +23,35 @@ h2 {
   line-height: 20px;
   font-weight: 400;
 }
+
+.q-menu {
+  border-radius: 12px !important;
+  margin-top: 14px !important;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.link {
+  text-decoration: underline;
+  font-weight: 500;
+  padding: 0;
+  font-size: 14px;
+  line-height: 16px;
+  min-height: 0;
+
+  .q-btn__content {
+    text-align: left !important;
+  }
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #717171;
+}
+
+.no-animation .q-ripple {
+  display: none;
+}

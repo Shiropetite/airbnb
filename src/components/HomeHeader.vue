@@ -77,6 +77,10 @@ const chooseLanguage = () => {
   .q-toolbar {
     height: 80px;
     padding: 0 136px;
+
+    @media (max-width: $breakpoint-lg-max) {
+      padding: 0 64px;
+    }
   }
 
   .account-btn {
@@ -84,10 +88,5 @@ const chooseLanguage = () => {
       border-radius: 100%;
     }
   }
-}
-
-.q-menu {
-  border-radius: 12px !important;
-  margin-top: 14px !important;
 }
 </style>
