@@ -5,8 +5,8 @@
         <q-item-section>
           <div class="row justify-between">
             <div>
-              <div class="label">{{ $t('adultss') }}</div>
-              <div class="subtitle">{{ $t('adultss_subtitle') }}</div>
+              <div class="label">{{ $t('adults') }}</div>
+              <div class="subtitle">{{ $t('adults_subtitle') }}</div>
             </div>
             <div>
               <div class="row items-center">
@@ -29,8 +29,8 @@
         <q-item-section>
           <div class="row justify-between">
             <div>
-              <div class="label">{{ $t('childrenren') }}</div>
-              <div class="subtitle">{{ $t('childrenren_subtitle') }}</div>
+              <div class="label">{{ $t('children') }}</div>
+              <div class="subtitle">{{ $t('children_subtitle') }}</div>
             </div>
             <div>
               <div class="row items-center">
