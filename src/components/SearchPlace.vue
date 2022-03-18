@@ -40,7 +40,7 @@
           class="no-hover"
           align="left"
           :class="nbGuests() === 0 ? 'placeholder' : ''"
-          :label="nbGuests() > 0 ? `${nbGuests()} voyageurs` : $t('guests_placeholder')"
+          :label="$tc('guests_placeholder', nbGuests(), { count: nbGuests() })"
           no-caps
           flat
         >
@@ -63,19 +63,15 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
+import { Guests, defaultGuests } from 'src/models/guests'
 import GuestsMenu from './GuestsMenu.vue'
 
 const destination = ref("");
 
-const nbGuests = () => guests.value.adult + guests.value.child + guests.value.baby + guests.value.animal;
+const nbGuests = () => guests.value.adults + guests.value.children + guests.value.infants + guests.value.pets;
 
-const guests = ref({
-  adult: 0,
-  child: 0,
-  baby: 0,
-  animal: 0
-})
+const guests: Ref<Guests> = ref(defaultGuests)
 
 </script>
 

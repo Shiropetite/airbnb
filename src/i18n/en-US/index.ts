@@ -18,8 +18,18 @@ export default {
   check_out: 'Check out',
   check_in_out_placeholder: 'Add dates',
   guests: 'Guests',
-  guests_placeholder: 'Add guests',
+  guests_placeholder: 'Add guests | {count} guest | {count} guests',
   search: 'Search',
   date: 'Date',
-  date_placeholder: 'Add when you want to go'
+  date_placeholder: 'Add when you want to go',
+  // Guest menu
+  adults: 'Adults',
+  adults_subtitle: 'Ages 13 or above',
+  children: 'Children',
+  children_subtitle: 'Ages 2–12',
+  infants: 'Infants',
+  infants_subtitle: 'Under 2',
+  pets: 'Pets',
+  pets_subtitle: 'Bringing a service animal ?',
+  pets_info: "If you're lucky enough to have more than 2 pets with you, be sure to let your host know."
 };
