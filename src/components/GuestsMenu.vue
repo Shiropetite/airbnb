@@ -1,109 +1,57 @@
 <template>
   <q-menu class="search-menu">
     <q-list style="width: 380px">
-      <q-item>
-        <q-item-section>
-          <div class="row justify-between">
-            <div>
-              <div class="label">{{ $t('adults') }}</div>
-              <div class="subtitle">{{ $t('adults_subtitle') }}</div>
-            </div>
-            <div>
-              <div class="row items-center">
-                <q-btn
-                  v-if="canRemoveAdult()"
-                  icon="remove"
-                  @click="guests.adults--"
-                  round
-                  outline
-                  dense
-                />
-                <div class="q-pa-md">{{ guests.adults }}</div>
-                <q-btn icon="add" @click="addAdult()" round outline dense />
-              </div>
-            </div>
-          </div>
-        </q-item-section>
-      </q-item>
-      <q-item>
-        <q-item-section>
-          <div class="row justify-between">
-            <div>
-              <div class="label">{{ $t('children') }}</div>
-              <div class="subtitle">{{ $t('children_subtitle') }}</div>
-            </div>
-            <div>
-              <div class="row items-center">
-                <q-btn
-                  v-if="guests.children > 0"
-                  icon="remove"
-                  @click="guests.children--"
-                  round
-                  outline
-                  dense
-                />
-                <div class="q-pa-md">{{ guests.children }}</div>
-                <q-btn icon="add" @click="addChild()" round outline dense />
-              </div>
-            </div>
-          </div>
-        </q-item-section>
-      </q-item>
+      <add-remove-item
+        item-name="adults"
+        :nb-item="guests.adults"
+        :disable-minus-btn="canRemoveAdult"
+        :remove-item="() => { guests.adults-- }"
+        :add-item="addAdult"
+      />
+
       <q-separator />
-      <q-item>
-        <q-item-section>
-          <div class="row justify-between">
-            <div>
-              <div class="label">{{ $t('infants') }}</div>
-              <div class="subtitle">{{ $t('infants_subtitle') }}</div>
-            </div>
-            <div>
-              <div class="row items-center">
-                <q-btn
-                  v-if="guests.infants > 0"
-                  icon="remove"
-                  @click="guests.infants--"
-                  round
-                  outline
-                  dense
-                />
-                <div class="q-pa-md">{{ guests.infants }}</div>
-                <q-btn icon="add" @click="addInfant()" round outline dense />
-              </div>
-            </div>
+
+      <add-remove-item
+        item-name="children"
+        :nb-item="guests.children"
+        :disable-minus-btn="() => guests.children > 0"
+        :remove-item="() => { guests.children-- }"
+        :add-item="addChild"
+      />
+
+      <q-separator />
+
+      <add-remove-item
+        item-name="infants"
+        :nb-item="guests.infants"
+        :disable-minus-btn="() => guests.infants > 0"
+        :remove-item="() => { guests.infants-- }"
+        :add-item="addInfant"
+      />
+
+      <q-separator />
+
+      <add-remove-item
+        item-name="pets"
+        :nb-item="guests.pets"
+        :disable-minus-btn="() => guests.pets > 0"
+        :remove-item="() => { guests.pets-- }"
+        :add-item="addPet"
+      >
+        <template #text>
+          <div class="col-7">
+            <div class="label">{{ $t('pets') }}</div>
+            <q-btn
+              class="link no-hover no-animation"
+              align="left"
+              :label="$t('pets_subtitle')"
+              no-caps
+              flat
+            />
           </div>
-        </q-item-section>
-      </q-item>
-      <q-item>
-        <q-item-section>
-          <div class="row justify-between">
-            <div class="col-7">
-              <div class="label">{{ $t('pets') }}</div>
-              <q-btn
-                class="link no-hover no-animation"
-                align="left"
-                :label="$t('pets_subtitle')"
-                no-caps
-                flat
-              />
-            </div>
-            <div>
-              <div class="row items-center">
-                <q-btn
-                  v-if="guests.pets > 0"
-                  icon="remove"
-                  @click="guests.pets--"
-                  round
-                  outline
-                  dense
-                />
-                <div class="q-pa-md">{{ guests.pets }}</div>
-                <q-btn icon="add" @click="addPet()" round outline dense />
-              </div>
-            </div>
-          </div>
-        </q-item-section>
-      </q-item>
+        </template>
+      </add-remove-item>
+
       <q-item>
         <q-item-section class="subtitle">{{ $t('pets_info') }}</q-item-section>
       </q-item>
@@ -112,7 +60,9 @@
 </template>
 <script lang="ts" setup>
 import { Guests } from 'src/models/guests'
+import AddRemoveItem from './AddRemoveItem.vue';
 
+// Define components
 const props = defineProps<{
   guests: Guests
 }>()
@@ -121,6 +71,7 @@ const emit = defineEmits<{
   (e: 'update:guests', value: any): void
 }>()
 
+// utils
 const canRemoveAdult = () => (props.guests.children === 0 && props.guests.infants === 0 && props.guests.pets === 0 && props.guests.adults > 0) || props.guests.adults > 1;
 
 const addAdult = () => {
