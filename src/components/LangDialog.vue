@@ -18,7 +18,7 @@
           >
             <div>
               <div>{{ language.label }}</div>
-              <div class="text-subtitle">{{ language.country }}</div>
+              <div class="subtitle">{{ language.country }}</div>
             </div>
           </q-item>
         </div>
@@ -32,8 +32,6 @@ import { useI18n } from 'vue-i18n';
 
 const { dialogRef, onDialogCancel } = useDialogPluginComponent();
 const { locale } = useI18n({ useScope: 'global' })
-
-console.log(locale.value)
 
 const localeOptions = [
   { value: 'fr-FR', label: 'Français', country: 'France' },
@@ -50,13 +48,6 @@ const assign = (value: string) => {
   color: #222222;
   width: 100%;
 
-  h2 {
-    font-size: 26px;
-    font-weight: 500 !important;
-    margin: 0px !important;
-    padding: 0px !important;
-  }
-
   .q-item {
     min-width: 180px;
     border-radius: 12px;
@@ -64,10 +55,6 @@ const assign = (value: string) => {
 
   .selected {
     border: solid 1px black;
-  }
-
-  .text-subtitle {
-    color: #717171;
   }
 }
 </style>

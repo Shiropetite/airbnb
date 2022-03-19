@@ -48,8 +48,8 @@
 
 <script lang="ts" setup>
 import { Ref, ref } from 'vue';
-import SearchPlace from 'src/components/SearchPlace.vue';
-import SearchExperience from 'src/components/SearchExperience.vue';
+import SearchPlace from 'src/pages/home/components/SearchPlace.vue';
+import SearchExperience from 'src/pages/home/components/SearchExperience.vue';
 
 const optionSelected: Ref<String> = ref('place_to_stay')
 
@@ -58,15 +58,6 @@ const updateOption = (newOption: string) => {
 }
 </script>
 <style lang="scss">
-.middle {
-  position: absolute;
-  top: -62px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 50%;
-  z-index: 9999;
-}
-
 .line {
   height: 2px;
   width: 10px;

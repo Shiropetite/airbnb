@@ -6,7 +6,7 @@
         :nb-item="guests.adults"
         :disable-minus-btn="canRemoveAdult"
         :remove-item="() => { guests.adults-- }"
-        :add-item="addAdult"
+        :add-item="() => { props.guests.adults++ }"
       />
 
       <q-separator />
@@ -59,10 +59,10 @@
   </q-menu>
 </template>
 <script lang="ts" setup>
-import { Guests } from 'src/models/guests'
-import AddRemoveItem from './AddRemoveItem.vue';
+import { watch } from 'vue';
+import { Guests, updateGuests } from 'src/models/guests'
+import AddRemoveItem from 'src/components/AddRemoveItem.vue';
 
-// Define components
 const props = defineProps<{
   guests: Guests
 }>()
@@ -71,39 +71,10 @@ const emit = defineEmits<{
   (e: 'update:guests', value: any): void
 }>()
 
-// utils
-const canRemoveAdult = () => (props.guests.children === 0 && props.guests.infants === 0 && props.guests.pets === 0 && props.guests.adults > 0) || props.guests.adults > 1;
+const { canRemoveAdult, addChild, addInfant, addPet } = updateGuests(props.guests)
 
-const addAdult = () => {
-  props.guests.adults++;
+watch(props, () => {
   emit('update:guests', props.guests);
-}
-
-const addChild = () => {
-  props.guests.children++;
-
-  if (props.guests.adults === 0) {
-    props.guests.adults++;
-  }
-  emit('update:guests', props.guests);
-}
-
-const addInfant = () => {
-  props.guests.infants++;
-
-  if (props.guests.adults === 0) {
-    props.guests.adults++;
-  }
-  emit('update:guests', props.guests);
-}
-
-const addPet = () => {
-  props.guests.pets++;
-
-  if (props.guests.adults === 0) {
-    props.guests.adults++;
-  }
-  emit('update:guests', props.guests);
-}
+}, { deep: true })
 
 </script>

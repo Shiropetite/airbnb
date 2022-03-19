@@ -63,7 +63,7 @@
 
 <script lang="ts" setup>
 import { Dialog } from 'quasar';
-import LangDialog from './LangDialog.vue';
+import LangDialog from 'src/components/LangDialog.vue';
 
 const chooseLanguage = () => {
   Dialog.create({
