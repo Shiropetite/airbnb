@@ -11,12 +11,15 @@
       <div class="col input">
         <div class="label">{{ $t('check_in') }}</div>
         <q-btn
-          class="no-hover placeholder"
+          class="no-hover"
           align="left"
-          :label="$t('check_in_out_placeholder')"
+          :class="!!selectedDate.from ? '' : 'placeholder'"
+          :label="!!selectedDate.from ? displayDate(selectedDate.from) : $t('check_in_out_placeholder')"
           no-caps
           flat
-        />
+        >
+          <date-menu v-model="selectedDate" />
+        </q-btn>
       </div>
 
       <q-separator class="q-my-md" size="sm" color="$grey" vertical />
@@ -24,12 +27,15 @@
       <div class="col input">
         <div class="label">{{ $t('check_out') }}</div>
         <q-btn
-          class="no-hover placeholder"
+          class="no-hover"
           align="left"
-          :label="$t('check_in_out_placeholder')"
+          :class="!!selectedDate.to ? '' : 'placeholder'"
+          :label="!!selectedDate.to ? displayDate(selectedDate.to) : $t('check_in_out_placeholder')"
           no-caps
           flat
-        />
+        >
+          <date-menu v-model="selectedDate" />
+        </q-btn>
       </div>
 
       <q-separator class="q-my-md" size="sm" color="$grey" vertical />
@@ -64,14 +70,24 @@
 </template>
 <script lang="ts" setup>
 import { Ref, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { Guests, defaultGuests } from 'src/models/guests'
 import GuestsMenu from './GuestsMenu.vue'
+import DateMenu from './DateMenu.vue'
+import { date } from 'quasar';
 
-const destination = ref("");
+const destination: Ref<string> = ref("");
+const guests: Ref<Guests> = ref(defaultGuests);
+const selectedDate: Ref<{ from: string, to: string }> = ref({ from: '', to: '' });
+
+const { t } = useI18n();
+
+const displayDate = (d: string) => {
+  const da = date.extractDate(d, 'DD/MM/YYYY')
+  return da.getDate() + " " + t(`month.${da.getMonth()}`);
+}
 
 const nbGuests = () => guests.value.adults + guests.value.children + guests.value.infants + guests.value.pets;
-
-const guests: Ref<Guests> = ref(defaultGuests)
 
 </script>
 

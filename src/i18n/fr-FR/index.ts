@@ -1,3 +1,5 @@
+import date from './date.json'
+
 export default {
   // Home header
   place_to_stay: "Hébergements",
@@ -31,5 +33,6 @@ export default {
   infants_subtitle: '- de 2 ans',
   pets: 'Animaux domestiques',
   pets_subtitle: 'Vous voyagez avec un animal d\'assistance ?',
-  pets_info: "Si plus de deux animaux de compagnie vous accompagnent, veuillez en informer votre hôte."
+  pets_info: "Si plus de deux animaux de compagnie vous accompagnent, veuillez en informer votre hôte.",
+  ...date
 };

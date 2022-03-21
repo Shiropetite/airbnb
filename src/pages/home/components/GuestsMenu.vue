@@ -1,5 +1,5 @@
 <template>
-  <q-menu class="search-menu">
+  <q-menu class="search-menu guest-menu">
     <q-list style="width: 380px">
       <add-remove-item
         item-name="adults"

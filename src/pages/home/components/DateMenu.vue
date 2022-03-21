@@ -1,0 +1,124 @@
+<template>
+  <q-menu class="search-menu date-menu" style="width: 900px">
+    <div class="row justify-center q-pa-md">
+      <div class="tab rounded q-pa-xs q-mb-md">
+        <q-btn
+          class="col no-hover no-animation q-mr-sm"
+          :class="optionSelected === 'calendar' ? 'bg-white' : ''"
+          label="Calendrier"
+          @click="optionSelected = 'calendar'"
+          rounded
+          no-caps
+          dense
+          flat
+        />
+        <q-btn
+          class="no-hover no-animation"
+          :class="optionSelected === 'flexible' ? 'bg-white' : ''"
+          label="Dates flexibles"
+          @click="optionSelected = 'flexible'"
+          rounded
+          no-caps
+          dense
+          flat
+        />
+      </div>
+      <div v-if="optionSelected === 'calendar'" class="col-12">
+        <div class="row justify-center">
+          <div class="col-5 q-mr-xl">
+            <date-picker
+              v-model="modelValue"
+              :month="monthN"
+              :year="yearN"
+              :back="true"
+              @back="back()"
+            />
+          </div>
+          <div class="col-5">
+            <date-picker
+              v-model="modelValue"
+              :month="monthN1"
+              :year="yearN1"
+              :next="true"
+              @next="next()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </q-menu>
+</template>
+<script lang="ts" setup>
+import { Ref, ref } from 'vue';
+import DatePicker from 'src/components/DatePicker.vue';
+
+const props = defineProps<{
+  modelValue: { from: string, to: string },
+}>()
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: { from: string, to: string }): void
+}>()
+
+const optionSelected: Ref<string> = ref('calendar');
+
+const today = new Date();
+
+const monthN = ref(today.getMonth());
+const yearN = ref(today.getFullYear());
+
+const monthN1 = ref(today.getMonth() === 11 ? 0 : today.getMonth() + 1);
+const yearN1 = ref(today.getMonth() === 11 ? today.getFullYear() + 1 : today.getFullYear());
+
+const back = () => {
+  if (monthN.value === 0) {
+    monthN.value = 11
+    yearN.value -= 1
+  }
+  else {
+    monthN.value -= 1
+  }
+
+  if (monthN1.value === 0) {
+    monthN1.value = 11
+    yearN1.value -= 1
+  }
+  else {
+    monthN1.value -= 1
+  }
+
+}
+
+const next = () => {
+  if (monthN.value === 11) {
+    monthN.value = 0
+    yearN.value += 1
+  }
+  else {
+    monthN.value += 1
+  }
+
+  if (monthN1.value === 11) {
+    monthN1.value = 0
+    yearN1.value += 1
+  }
+  else {
+    monthN1.value += 1
+  }
+}
+
+</script>
+<style lang="scss">
+.date-menu {
+  .q-btn {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 10px;
+    transition: background-color linear 0.1s;
+  }
+
+  .tab {
+    background-color: rgb(235, 235, 235);
+  }
+}
+</style>

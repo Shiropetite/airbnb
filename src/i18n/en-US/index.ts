@@ -1,3 +1,5 @@
+import date from './date.json'
+
 export default {
   // Home header
   place_to_stay: "Places to stay",
@@ -31,5 +33,6 @@ export default {
   infants_subtitle: 'Under 2',
   pets: 'Pets',
   pets_subtitle: 'Bringing a service animal ?',
-  pets_info: "If you're lucky enough to have more than 2 pets with you, be sure to let your host know."
+  pets_info: "If you're lucky enough to have more than 2 pets with you, be sure to let your host know.",
+  ...date
 };

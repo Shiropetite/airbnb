@@ -62,8 +62,21 @@ h2 {
   }
 }
 
+.disabled {
+  cursor: default !important;
+  color: rgb(72, 72, 72);
+}
+
+.disabled * {
+  cursor: default !important;
+}
+
 // Menu
 .q-menu {
   border-radius: 12px !important;
   margin-top: 14px !important;
+}
+
+.rounded {
+  border-radius: 32px;
 }
