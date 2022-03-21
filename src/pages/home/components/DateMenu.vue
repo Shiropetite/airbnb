@@ -44,6 +44,48 @@
             />
           </div>
         </div>
+        <div class="margin q-px-xl row q-col-gutter-sm">
+          <div>
+            <q-btn
+              :label="$tc('day', 1, { count: 1 })"
+              :class="modelValue.margin === 1 ? 'selected' : ''"
+              @click="chooseMargin(1)"
+              no-caps
+              rounded
+              flat
+            />
+          </div>
+          <div>
+            <q-btn
+              :label="$tc('day', 2, { count: 2 })"
+              :class="modelValue.margin === 2 ? 'selected' : ''"
+              @click="chooseMargin(2)"
+              no-caps
+              rounded
+              flat
+            />
+          </div>
+          <div>
+            <q-btn
+              :label="$tc('day', 3, { count: 3 })"
+              :class="modelValue.margin === 3 ? 'selected' : ''"
+              @click="chooseMargin(3)"
+              no-caps
+              rounded
+              flat
+            />
+          </div>
+          <div>
+            <q-btn
+              :label="$tc('day', 7, { count: 7 })"
+              :class="modelValue.margin === 7 ? 'selected' : ''"
+              @click="chooseMargin(7)"
+              no-caps
+              rounded
+              flat
+            />
+          </div>
+        </div>
       </div>
     </div>
   </q-menu>
@@ -53,11 +95,11 @@ import { Ref, ref } from 'vue';
 import DatePicker from 'src/components/DatePicker.vue';
 
 const props = defineProps<{
-  modelValue: { from: string, to: string },
+  modelValue: { from: string, to: string, margin?: number },
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: { from: string, to: string }): void
+  (e: 'update:modelValue', value: { from: string, to: string, margin?: number }): void
 }>()
 
 const optionSelected: Ref<string> = ref('calendar');
@@ -69,6 +111,16 @@ const yearN = ref(today.getFullYear());
 
 const monthN1 = ref(today.getMonth() === 11 ? 0 : today.getMonth() + 1);
 const yearN1 = ref(today.getMonth() === 11 ? today.getFullYear() + 1 : today.getFullYear());
+
+const chooseMargin = (margin: number) => {
+  if (margin === props.modelValue.margin) {
+    props.modelValue.margin = undefined
+  }
+  else {
+    props.modelValue.margin = margin;
+  }
+  emit('update:modelValue', props.modelValue)
+}
 
 const back = () => {
   if (monthN.value === 0) {
@@ -115,6 +167,26 @@ const next = () => {
     font-weight: 500;
     padding: 0 10px;
     transition: background-color linear 0.1s;
+  }
+
+  .margin {
+    .q-btn {
+      font-weight: 300;
+      border: solid 1px rgb(221, 221, 221);
+    }
+
+    .q-btn:hover {
+      background-color: white;
+      border-color: black;
+
+      .q-focus-helper {
+        visibility: hidden;
+      }
+    }
+
+    .selected {
+      border: solid 2px black;
+    }
   }
 
   .tab {

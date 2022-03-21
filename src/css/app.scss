@@ -37,16 +37,16 @@ h2 {
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
+
+  .q-ripple {
+    display: none;
+  }
 }
 
 .no-hover {
   .q-focus-helper {
     visibility: hidden;
   }
-}
-
-.no-animation .q-ripple {
-  display: none;
 }
 
 .link {
@@ -75,6 +75,8 @@ h2 {
 .q-menu {
   border-radius: 12px !important;
   margin-top: 14px !important;
+  max-width: fit-content !important;
+  max-height: fit-content !important;
 }
 
 .rounded {

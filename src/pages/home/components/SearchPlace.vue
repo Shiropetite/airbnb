@@ -1,7 +1,7 @@
 <template>
   <div class="search bg-white">
-    <div class="row justify-center">
-      <div class="input" style="width: 260px">
+    <div class="row justify-center items-center">
+      <div class="input" style="width: 240px">
         <div class="label">{{ $t('location') }}</div>
         <input v-model="destination" :placeholder="$t('location_placeholder')" />
       </div>
@@ -38,6 +38,18 @@
         </q-btn>
       </div>
 
+      <div class="q-pa-md">
+        <q-btn
+          v-if="!!selectedDate.to || !!selectedDate.from"
+          class="label"
+          icon="close"
+          size="sm"
+          @click="selectedDate = { from: '', to: '' }"
+          round
+          dense
+        />
+      </div>
+
       <q-separator class="q-my-md" size="sm" color="$grey" vertical />
 
       <div class="col input">
@@ -69,22 +81,24 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { date } from 'quasar';
 import { Ref, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Guests, defaultGuests } from 'src/models/guests'
 import GuestsMenu from './GuestsMenu.vue'
 import DateMenu from './DateMenu.vue'
-import { date } from 'quasar';
 
 const destination: Ref<string> = ref("");
 const guests: Ref<Guests> = ref(defaultGuests);
-const selectedDate: Ref<{ from: string, to: string }> = ref({ from: '', to: '' });
+const selectedDate: Ref<{ from: string, to: string, margin?: number }> = ref({ from: '', to: '' });
 
 const { t } = useI18n();
 
-const displayDate = (d: string) => {
+const displayDate = (d: string): string => {
   const da = date.extractDate(d, 'DD/MM/YYYY')
-  return da.getDate() + " " + t(`month.${da.getMonth()}`);
+  let string = t('day-month', { day: da.getDate(), month: t(`months.${da.getMonth()}`) });
+  string += !!selectedDate.value.margin ? ` ±${selectedDate.value.margin}` : ''
+  return string;
 }
 
 const nbGuests = () => guests.value.adults + guests.value.children + guests.value.infants + guests.value.pets;

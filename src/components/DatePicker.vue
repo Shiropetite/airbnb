@@ -3,7 +3,7 @@
     <q-btn v-if="back === true" icon="chevron_left" @click="emit('back')" flat round />
     <div v-else style="width: 42px"></div>
 
-    <div class="label">{{ $t(`month.${month}`) }} {{ year }}</div>
+    <div class="label">{{ $t(`months.${month}`) }} {{ year }}</div>
 
     <q-btn v-if="next === true" icon="chevron_right" @click="emit('next')" flat round />
     <div v-else style="width: 42px"></div>
@@ -14,7 +14,7 @@
         <td
           class="day text-center q-pb-sm"
           v-for="(_, index) in 7"
-        >{{ $t(`day.${index}`).substring(0, 2) }}</td>
+        >{{ $t(`days.${getDayIndex(index)}`).substring(0, 2) }}</td>
       </tr>
       <tr v-for="(_, weekIndex) in nbWeek()">
         <td
@@ -43,9 +43,10 @@
 <script lang="ts" setup>
 import { date } from 'quasar';
 import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
-  modelValue: { from: string, to: string },
+  modelValue: { from: string, to: string, margin?: number },
   month: number,
   year: number,
   back?: boolean,
@@ -55,8 +56,10 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'back'): void,
   (e: 'next'): void,
-  (e: 'update:modelValue', value: { from: string, to: string }): void
+  (e: 'update:modelValue', value: { from: string, to: string, margin?: number }): void
 }>()
+
+const { t } = useI18n();
 
 const dayInWeek = 7;
 const today = new Date();
@@ -135,16 +138,19 @@ const isDay = (weekIndex: number, dayIndex: number): boolean =>
   getDay(weekIndex, dayIndex) <= date.daysInMonth(currentDate.value) && getDay(weekIndex, dayIndex) > 0;
 
 const getDay = (weekIndex: number, dayIndex: number) =>
-  weekIndex * dayInWeek + (dayIndex + 1) - getDayIndex()
+  weekIndex * dayInWeek + (dayIndex + 1) - getDayIndex(currentDate.value.getDay())
 
 const nbWeek = () => {
   const nbDayInMonth = date.daysInMonth(currentDate.value)
-  const allDay = nbDayInMonth + getDayIndex()
+  const allDay = nbDayInMonth + getDayIndex(currentDate.value.getDay())
   return Math.round(allDay / 7) + 1;
 }
 
-const getDayIndex = () =>
-  currentDate.value.getDay() === 0 ? 6 : currentDate.value.getDay() - 1
+const getDayIndex = (day: number) => {
+  const firstDayOfWeek = Number.parseInt(t('firstDayOfWeek'));
+  return day + firstDayOfWeek < 7 ? day + firstDayOfWeek : dayInWeek - day - firstDayOfWeek
+}
+
 
 </script>
 <style lang="scss">

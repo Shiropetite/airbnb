@@ -1,5 +1,5 @@
 {
-  "month":  [
+  "months":  [
     "janvier",
     "février",
     "mars",
@@ -13,13 +13,16 @@
     "novembre",
     "décembre"
   ],
-  "day": [
+  "firstDayOfWeek": "1",
+  "days": [
+    "dimanche",
     "lundi",
     "mardi",
     "mercredi",
     "jeudi",
     "vendredi",
-    "samedi",
-    "dimanche"
-  ]
+    "samedi"
+  ],
+  "day-month": "{day} {month}",
+  "day": "- | ± {count} jour | ± {count} jours"
 }
