@@ -1,5 +1,18 @@
 {
-  "months":  [
+  "month-year": "{month} {year}",
+  "day-month": "{month} {day}",
+  "day": "- | ± {count} day | ± {count} days",
+  "firstDayOfWeek": "0",
+    "days": [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday"
+  ],
+  "months": [
     "january",
     "february",
     "march",
@@ -12,17 +25,5 @@
     "october",
     "november",
     "december"
-  ],
-  "firstDayOfWeek": "0",
-  "days": [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday"
-  ],
-  "day-month": "{month} {day}",
-  "day": "- | ± {count} day | ± {count} days"
+  ]
 }

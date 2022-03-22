@@ -3,7 +3,7 @@
     <q-btn v-if="back === true" icon="chevron_left" @click="emit('back')" flat round />
     <div v-else style="width: 42px"></div>
 
-    <div class="label">{{ $t(`months.${month}`) }} {{ year }}</div>
+    <div class="label">{{ $t('month-year', { month: $t(`months.${month}`), year: year }) }}</div>
 
     <q-btn v-if="next === true" icon="chevron_right" @click="emit('next')" flat round />
     <div v-else style="width: 42px"></div>
@@ -146,6 +146,9 @@ const nbWeek = () => {
   return Math.round(allDay / 7) + 1;
 }
 
+/**
+ * Get the number of a day (depends of the local first day of the week)
+ */
 const getDayIndex = (day: number) => {
   const firstDayOfWeek = Number.parseInt(t('firstDayOfWeek'));
   return day + firstDayOfWeek < 7 ? day + firstDayOfWeek : dayInWeek - day - firstDayOfWeek
