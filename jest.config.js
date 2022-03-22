@@ -6,7 +6,7 @@ module.exports = {
   },
   moduleFileExtensions: ['vue', 'js', 'jsx', 'json', 'ts', 'tsx'],
   moduleNameMapper: {
-    '^quasar$': 'quasar/dist/quasar.esm.prod.js',
+    '^quasar$': '<rootDir>/node_modules/quasar',
     '^~/(.*)$': '<rootDir>/$1',
     '^src/(.*)$': '<rootDir>/src/$1',
     '^app/(.*)$': '<rootDir>/$1',

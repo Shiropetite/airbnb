@@ -14,9 +14,11 @@
         <td
           class="day text-center q-pb-sm"
           v-for="(_, index) in 7"
-        >{{ $t(`days.${getDayIndex(index)}`).substring(0, 2) }}</td>
+        >{{ $t(`days.${getDayNumber(index, Number.parseInt($t('firstDayOfWeek')) === 0)}`).substring(0, 2) }}</td>
       </tr>
-      <tr v-for="(_, weekIndex) in nbWeek()">
+      <tr
+        v-for="(_, weekIndex) in weeksInMonth(currentDate, Number.parseInt($t('firstDayOfWeek')) === 0)"
+      >
         <td
           class="text-center"
           v-for="(_, dayIndex) in 7"
@@ -44,6 +46,9 @@
 import { date } from 'quasar';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+
+// utils
+import { getDayBeforeMonth, getDayNumber, weeksInMonth } from 'src/utils/date';
 
 const props = defineProps<{
   modelValue: { from: string, to: string, margin?: number },
@@ -137,23 +142,9 @@ const isBeforeToday = (day: number): boolean =>
 const isDay = (weekIndex: number, dayIndex: number): boolean =>
   getDay(weekIndex, dayIndex) <= date.daysInMonth(currentDate.value) && getDay(weekIndex, dayIndex) > 0;
 
-const getDay = (weekIndex: number, dayIndex: number) =>
-  weekIndex * dayInWeek + (dayIndex + 1) - getDayIndex(currentDate.value.getDay())
-
-const nbWeek = () => {
-  const nbDayInMonth = date.daysInMonth(currentDate.value)
-  const allDay = nbDayInMonth + getDayIndex(currentDate.value.getDay())
-  return Math.round(allDay / 7) + 1;
+const getDay = (weekIndex: number, dayIndex: number) => {
+  return weekIndex * dayInWeek + (dayIndex + 1) - getDayBeforeMonth(currentDate.value, Number.parseInt(t('firstDayOfWeek')) === 0);
 }
-
-/**
- * Get the number of a day (depends of the local first day of the week)
- */
-const getDayIndex = (day: number) => {
-  const firstDayOfWeek = Number.parseInt(t('firstDayOfWeek'));
-  return day + firstDayOfWeek < 7 ? day + firstDayOfWeek : dayInWeek - day - firstDayOfWeek
-}
-
 
 </script>
 <style lang="scss">
