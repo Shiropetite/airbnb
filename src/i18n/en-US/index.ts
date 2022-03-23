@@ -34,5 +34,12 @@ export default {
   pets: 'Pets',
   pets_subtitle: 'Bringing a service animal ?',
   pets_info: "If you're lucky enough to have more than 2 pets with you, be sure to let your host know.",
+  calendar: "Calendar",
+  flexible: "I'm flexible",
+  stayWeekend: "Stay for a weekend",
+  weekend: "weekend",
+  week: "week",
+  month: "month",
+  goIn: "Go in {months}",
   ...date
 };

@@ -5,7 +5,7 @@
         <q-btn
           class="col no-hover no-animation q-mr-sm"
           :class="optionSelected === 'calendar' ? 'bg-white' : ''"
-          label="Calendrier"
+          :label="$t('calendar')"
           @click="optionSelected = 'calendar'"
           rounded
           no-caps
@@ -15,7 +15,7 @@
         <q-btn
           class="no-hover no-animation"
           :class="optionSelected === 'flexible' ? 'bg-white' : ''"
-          label="Dates flexibles"
+          :label="$t('flexible')"
           @click="optionSelected = 'flexible'"
           rounded
           no-caps
@@ -86,6 +86,15 @@
             />
           </div>
         </div>
+      </div>
+      <div v-else class="col-12">
+        <div class="text-center">{{ $t('stayWeekend') }}</div>
+        <div class="row justify-center">
+          <q-btn :label="$t('weekend')" rounded no-caps flat />
+          <q-btn :label="$t('week')" rounded no-caps flat />
+          <q-btn :label="$t('month')" rounded no-caps flat />
+        </div>
+        <div class="text-center">{{ $t('goIn') }}</div>
       </div>
     </div>
   </q-menu>
@@ -170,6 +179,8 @@ const next = () => {
   }
 
   .margin {
+    margin-top: 16px;
+
     .q-btn {
       font-weight: 300;
       border: solid 1px rgb(221, 221, 221);

@@ -34,5 +34,13 @@ export default {
   pets: 'Animaux domestiques',
   pets_subtitle: 'Vous voyagez avec un animal d\'assistance ?',
   pets_info: "Si plus de deux animaux de compagnie vous accompagnent, veuillez en informer votre hôte.",
+  // Date menu
+  calendar: "Calendrier",
+  flexible: "Dates flexibles",
+  stayWeekend: "Quelle sera la durée de votre séjour ?",
+  weekend: "Un week-end",
+  week: "Une semaine",
+  month: "un mois",
+  goIn: "Quand souhaitez-vous partir ?",
   ...date
 };
