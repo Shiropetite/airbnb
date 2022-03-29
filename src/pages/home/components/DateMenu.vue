@@ -6,7 +6,7 @@
           class="col no-hover no-animation q-mr-sm"
           :class="optionSelected === 'calendar' ? 'bg-white' : ''"
           :label="$t('calendar')"
-          @click="optionSelected = 'calendar'"
+          @click="chooseCalendar()"
           rounded
           no-caps
           dense
@@ -16,7 +16,7 @@
           class="no-hover no-animation"
           :class="optionSelected === 'flexible' ? 'bg-white' : ''"
           :label="$t('flexible')"
-          @click="optionSelected = 'flexible'"
+          @click="chooseFlexible()"
           rounded
           no-caps
           dense
@@ -44,7 +44,7 @@
             />
           </div>
         </div>
-        <div class="margin q-px-xl row q-col-gutter-sm">
+        <div class="outline-btn q-px-xl row q-col-gutter-sm" style="margin-top: 16px;">
           <div>
             <q-btn
               :label="$tc('day', 1, { count: 1 })"
@@ -88,13 +88,19 @@
         </div>
       </div>
       <div v-else class="col-12">
-        <div class="text-center">{{ $t('stayWeekend') }}</div>
-        <div class="row justify-center">
-          <q-btn :label="$t('weekend')" rounded no-caps flat />
-          <q-btn :label="$t('week')" rounded no-caps flat />
-          <q-btn :label="$t('month')" rounded no-caps flat />
+        <div class="flexible-text text-center">{{ $t('stayWeekend') }}</div>
+        <div class="outline-btn q-pb-md row justify-center q-col-gutter-sm">
+          <div>
+            <q-btn :label="$t('weekend')" rounded no-caps flat />
+          </div>
+          <div>
+            <q-btn :label="$t('week')" rounded no-caps flat />
+          </div>
+          <div>
+            <q-btn :label="$t('month')" rounded no-caps flat />
+          </div>
         </div>
-        <div class="text-center">{{ $t('goIn') }}</div>
+        <div class="flexible-text text-center">{{ $t('goIn') }}</div>
       </div>
     </div>
   </q-menu>
@@ -104,14 +110,16 @@ import { Ref, ref } from 'vue';
 import DatePicker from 'src/components/DatePicker.vue';
 
 const props = defineProps<{
-  modelValue: { from: string, to: string, margin?: number },
+  modelValue: { from: string, to: string, margin?: number, duration?: string, months?: number[] },
+  isFlexible: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: { from: string, to: string, margin?: number }): void
+  (e: 'update:modelValue', value: { from: string, to: string, margin?: number, duration?: string, months?: number[] }): void,
+  (e: 'update:isFlexible', value: boolean): void
 }>()
 
-const optionSelected: Ref<string> = ref('calendar');
+const optionSelected: Ref<string> = ref(props.isFlexible ? 'flexible' : 'calendar');
 
 const today = new Date();
 
@@ -168,6 +176,22 @@ const next = () => {
   }
 }
 
+const chooseCalendar = () => {
+  optionSelected.value = 'calendar'
+  props.modelValue.duration = undefined;
+  props.modelValue.months = undefined;
+  emit('update:isFlexible', false)
+}
+
+const chooseFlexible = () => {
+  optionSelected.value = 'flexible'
+  props.modelValue.from = '';
+  props.modelValue.to = '';
+  props.modelValue.margin = undefined;
+  props.modelValue.months = [monthN.value, monthN1.value];
+  emit('update:isFlexible', true)
+}
+
 </script>
 <style lang="scss">
 .date-menu {
@@ -178,9 +202,13 @@ const next = () => {
     transition: background-color linear 0.1s;
   }
 
-  .margin {
-    margin-top: 16px;
+  .flexible-text {
+    color: #717171;
+    font-size: 18px;
+    padding: 8px 0 16px;
+  }
 
+  .outline-btn {
     .q-btn {
       font-weight: 300;
       border: solid 1px rgb(221, 221, 221);

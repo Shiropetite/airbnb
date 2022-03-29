@@ -8,7 +8,14 @@
 
       <q-separator class="q-my-md" size="sm" color="$grey" vertical />
 
-      <div class="col input">
+      <div v-if="isFlexible === true" class="col input">
+        <!-- <div class="label">{{ $t('check_in') }}</div> -->
+        <q-btn class="no-hover" align="left" no-caps flat>
+          <date-menu v-model="selectedDate" :is-flexible="false" />
+        </q-btn>
+      </div>
+
+      <div v-if="!isFlexible" class="col input">
         <div class="label">{{ $t('check_in') }}</div>
         <q-btn
           class="no-hover"
@@ -18,13 +25,13 @@
           no-caps
           flat
         >
-          <date-menu v-model="selectedDate" />
+          <date-menu v-model="selectedDate" :is-flexible="false" />
         </q-btn>
       </div>
 
-      <q-separator class="q-my-md" size="sm" color="$grey" vertical />
+      <q-separator v-if="!isFlexible" class="q-my-md" size="sm" color="$grey" vertical />
 
-      <div class="col input">
+      <div v-if="!isFlexible" class="col input">
         <div class="label">{{ $t('check_out') }}</div>
         <q-btn
           class="no-hover"
@@ -34,7 +41,7 @@
           no-caps
           flat
         >
-          <date-menu v-model="selectedDate" />
+          <date-menu v-model="selectedDate" :is-flexible="false" />
         </q-btn>
       </div>
 
@@ -90,7 +97,8 @@ import DateMenu from './DateMenu.vue'
 
 const destination: Ref<string> = ref("");
 const guests: Ref<Guests> = ref(defaultGuests);
-const selectedDate: Ref<{ from: string, to: string, margin?: number }> = ref({ from: '', to: '' });
+const isFlexible: Ref<boolean> = ref(false);
+const selectedDate: Ref<{ from: string, to: string, margin?: number, duration?: string, months?: number[] }> = ref({ from: '', to: '' });
 
 const { t } = useI18n();
 
