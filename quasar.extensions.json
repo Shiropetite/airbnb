@@ -1,1 +1,8 @@
-{}
+{
+  "@quasar/testing-e2e-cypress": {
+    "options": [
+      "scripts",
+      "typescript"
+    ]
+  }
+}

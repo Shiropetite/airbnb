@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { nbDay, useDatePicker } from 'src/composables/useDatePicker';
 
 describe('Get day number', () => {
