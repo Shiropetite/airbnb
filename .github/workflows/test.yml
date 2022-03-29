@@ -1,4 +1,4 @@
-name: Build
+name: Test
 
 on:
   push:
@@ -29,28 +29,11 @@ jobs:
         run: npm install --global yarn
 
       - name: Install
-        run: yarn install
+        run: yarn install --ignore-engines
 
-      - name: Build SPA
-        run: yarn build
+      - name: Test unitaire
+        run: yarn test:jest
 
-      - name: Upload dist file
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist-file
-          path: dist
+      - name: Test cypress
+        run: yarn test:cypress
 
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download a single artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: dist-file
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: dist/spa
