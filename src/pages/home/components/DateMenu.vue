@@ -47,6 +47,7 @@
         <div class="outline-btn q-px-xl row q-col-gutter-sm" style="margin-top: 16px;">
           <div>
             <q-btn
+              class="no-hover"
               :label="$tc('day', 1, { count: 1 })"
               :class="modelValue.margin === 1 ? 'selected' : ''"
               @click="chooseMargin(1)"
@@ -57,6 +58,7 @@
           </div>
           <div>
             <q-btn
+              class="no-hover"
               :label="$tc('day', 2, { count: 2 })"
               :class="modelValue.margin === 2 ? 'selected' : ''"
               @click="chooseMargin(2)"
@@ -67,6 +69,7 @@
           </div>
           <div>
             <q-btn
+              class="no-hover"
               :label="$tc('day', 3, { count: 3 })"
               :class="modelValue.margin === 3 ? 'selected' : ''"
               @click="chooseMargin(3)"
@@ -77,6 +80,7 @@
           </div>
           <div>
             <q-btn
+              class="no-hover"
               :label="$tc('day', 7, { count: 7 })"
               :class="modelValue.margin === 7 ? 'selected' : ''"
               @click="chooseMargin(7)"
@@ -91,13 +95,13 @@
         <div class="flexible-text text-center">{{ $t('stayWeekend') }}</div>
         <div class="outline-btn q-pb-md row justify-center q-col-gutter-sm">
           <div>
-            <q-btn :label="$t('weekend')" rounded no-caps flat />
+            <q-btn class="no-hover" :label="$t('weekend')" rounded no-caps flat />
           </div>
           <div>
-            <q-btn :label="$t('week')" rounded no-caps flat />
+            <q-btn class="no-hover" :label="$t('week')" rounded no-caps flat />
           </div>
           <div>
-            <q-btn :label="$t('month')" rounded no-caps flat />
+            <q-btn class="no-hover" :label="$t('month')" rounded no-caps flat />
           </div>
         </div>
         <div class="flexible-text text-center">{{ $t('goIn') }}</div>

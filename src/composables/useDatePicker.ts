@@ -79,7 +79,7 @@ export const useDatePicker = ({ modelValue, month, year }: {modelValue: any, mon
    */
   const isBeforeToday = (weekIndex: number, dayIndex: number): boolean => {
     const day = getDay(weekIndex, dayIndex);
-    return day < today.getDate() && month === today.getMonth() || month < today.getMonth() || year < today.getFullYear();
+    return day < today.getDate() && month === today.getMonth() && year === today.getFullYear() || month < today.getMonth() || year < today.getFullYear();
   }
 
   /**
@@ -164,6 +164,7 @@ export const useDatePicker = ({ modelValue, month, year }: {modelValue: any, mon
         modelValue.from = ''
       }
       modelValue.from = dateString;
+
     }
   }
 

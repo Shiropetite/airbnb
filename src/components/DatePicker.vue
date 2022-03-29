@@ -3,7 +3,10 @@
     <q-btn v-if="back === true" icon="chevron_left" @click="emit('back')" flat round />
     <div v-else style="width: 42px"></div>
 
-    <div class="label">{{ $t('month-year', { month: $t(`months.${month}`), year: year }) }}</div>
+    <div
+      class="label"
+      data-cy="date"
+    >{{ $t('month-year', { month: $t(`months.${month}`), year: year }) }}</div>
 
     <q-btn v-if="next === true" icon="chevron_right" @click="emit('next')" flat round />
     <div v-else style="width: 42px"></div>
@@ -15,6 +18,7 @@
           class="day text-center q-pb-sm"
           v-for="(_, index) in nbDay"
           :key="index"
+          :data-cy="`day-${index}`"
         >{{ $t(`days.${getDayNumber(index)}`).substring(0, 2) }}</td>
       </tr>
       <tr v-for="(_, weekIndex) in getWeeksInMonth()" :key="weekIndex">
@@ -23,8 +27,10 @@
           v-for="(_, dayIndex) in nbDay"
           :key="dayIndex"
           :class="getClassCell(weekIndex, dayIndex)"
+          :data-cy="`cell-${weekIndex}-${dayIndex}`"
         >
           <q-btn
+            class="no-hover"
             :class="getClassBtn(weekIndex, dayIndex)"
             v-if="isValidDay(weekIndex, dayIndex)"
             :label="getDay(weekIndex, dayIndex)"
