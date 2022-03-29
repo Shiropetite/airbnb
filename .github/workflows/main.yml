@@ -40,8 +40,68 @@ jobs:
           name: dist-file
           path: dist
 
-  deploy:
+  test-unit:
     needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Yarn
+        run: npm install --global yarn
+
+      - name: Install
+        run: yarn install
+
+      - name: Test
+        run: yarn test:jest
+
+  test-cypress:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Yarn
+        run: npm install --global yarn
+
+      - name: Install
+        run: yarn install
+
+      - name: Test
+        run: yarn test:cypress
+
+  deploy:
+    needs: [test-cypress, test-unit]
     runs-on: ubuntu-latest
 
     steps:
@@ -49,6 +109,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist-file
+
+      - name: ls
+        run: ls
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
