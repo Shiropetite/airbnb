@@ -2,9 +2,9 @@ import date from './date.json'
 
 export default {
   // Home header
-  place_to_stay: "Places to stay",
+  "place-to-stay": "Places to stay",
   experiences: "Experiences",
-  online_experiences: "Online Experiences",
+  "online-experiences": "Online Experiences",
   become_host: "Become a Host",
   sign_up: "Sign up",
   log_in: "Log in",

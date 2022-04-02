@@ -1,45 +1,8 @@
 <template>
   <q-page class="bg-black">
-    <div class="middle row justify-center text-white">
-      <div
-        class="row justify-center"
-        :class="optionSelected === 'place_to_stay' ? 'selected' : 'line-btn'"
-      >
-        <q-btn
-          class="col-12 no-hover"
-          :label="$t('place_to_stay')"
-          @click="updateOption('place_to_stay')"
-          rounded
-          no-caps
-          flat
-        />
-        <div class="line"></div>
-      </div>
-
-      <div
-        class="row justify-center"
-        :class="optionSelected === 'experiences' ? 'selected' : 'line-btn'"
-      >
-        <q-btn
-          class="col-12 no-hover"
-          :label="$t('experiences')"
-          @click="updateOption('experiences')"
-          rounded
-          no-caps
-          flat
-        />
-        <div class="line"></div>
-      </div>
-
-      <div class="line-btn row justify-center">
-        <!--  to="/s/experiences/online" -->
-        <q-btn class="col-12 no-hover" :label="$t('online_experiences')" rounded no-caps flat />
-        <div class="line"></div>
-      </div>
-    </div>
-
+    <navbar-vue v-model="optionSelected" />
     <div class="row justify-center">
-      <search-place v-if="optionSelected === 'place_to_stay'" />
+      <search-place v-if="optionSelected === 'place-to-stay'" />
       <search-experience v-else />
     </div>
     <div class="row items-center justify-evenly text-white">Home</div>
@@ -48,40 +11,15 @@
 
 <script lang="ts" setup>
 import { Ref, ref } from 'vue';
+
+import { Options } from './model';
+
+import NavbarVue from './components/Navbar.vue';
 import SearchPlace from 'src/pages/home/components/SearchPlace.vue';
 import SearchExperience from 'src/pages/home/components/SearchExperience.vue';
 
-const optionSelected: Ref<String> = ref('place_to_stay')
+const optionSelected: Ref<Options> = ref(Options.PLACE_TO_STAY);
 
-const updateOption = (newOption: string) => {
-  optionSelected.value = newOption;
-}
 </script>
 <style lang="scss">
-.line {
-  height: 2px;
-  width: 10px;
-  transition: all linear 0.5s;
-}
-
-.selected {
-  .line {
-    background-color: white;
-    width: 20px;
-  }
-}
-
-.line-btn {
-  button:hover,
-  a:hover {
-    transition: all linear 0.3s;
-    color: rgb(182, 182, 182);
-  }
-
-  button:hover ~ .line,
-  a:hover ~ .line {
-    background-color: white;
-    width: 10px;
-  }
-}
 </style>

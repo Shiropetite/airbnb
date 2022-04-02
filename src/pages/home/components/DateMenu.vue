@@ -48,6 +48,17 @@
           <div>
             <q-btn
               class="no-hover"
+              :label="$tc('day', 0, { count: 0 })"
+              :class="modelValue.margin === undefined ? 'selected' : ''"
+              @click="chooseMargin()"
+              no-caps
+              rounded
+              flat
+            />
+          </div>
+          <div>
+            <q-btn
+              class="no-hover"
               :label="$tc('day', 1, { count: 1 })"
               :class="modelValue.margin === 1 ? 'selected' : ''"
               @click="chooseMargin(1)"
@@ -105,6 +116,17 @@
           </div>
         </div>
         <div class="flexible-text text-center">{{ $t('goIn') }}</div>
+        <div class="outline-btn q-pb-md row justify-center q-col-gutter-sm">
+          <div>
+            <q-btn class="no-hover" :label="$t('weekend')" rounded no-caps flat />
+          </div>
+          <div>
+            <q-btn class="no-hover" :label="$t('week')" rounded no-caps flat />
+          </div>
+          <div>
+            <q-btn class="no-hover" :label="$t('month')" rounded no-caps flat />
+          </div>
+        </div>
       </div>
     </div>
   </q-menu>
@@ -133,12 +155,12 @@ const yearN = ref(today.getFullYear());
 const monthN1 = ref(today.getMonth() === 11 ? 0 : today.getMonth() + 1);
 const yearN1 = ref(today.getMonth() === 11 ? today.getFullYear() + 1 : today.getFullYear());
 
-const chooseMargin = (margin: number) => {
-  if (margin === props.modelValue.margin) {
-    props.modelValue.margin = undefined
+const chooseMargin = (margin?: number) => {
+  if (margin) {
+    props.modelValue.margin = margin;
   }
   else {
-    props.modelValue.margin = margin;
+    props.modelValue.margin = undefined
   }
   emit('update:modelValue', props.modelValue)
 }
