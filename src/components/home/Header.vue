@@ -1,25 +1,35 @@
 <template>
-  <q-header class="home-header">
-    <q-toolbar class="bg-black">
+  <q-header class="gt-xs home-header">
+    <q-toolbar>
       <q-btn class="no-hover q-py-md" to="/" rounded no-caps flat>
-        <q-img src="logo.svg" height="32px" width="102px" />
+        <q-img class="gt-md" src="logo-white.png" height="32px" width="103.5px" />
+        <q-img class="lt-lg" src="logo-small-white.png" height="34px" width="31.5px" />
       </q-btn>
 
       <q-space />
 
       <!-- to="/host/homes" -->
-      <q-btn :label="$t('become_host')" rounded no-caps flat />
+      <q-btn class="host-btn" :label="$t('become_host')" rounded no-caps flat />
 
-      <q-btn class="q-mr-sm" icon="language" @click="chooseLanguage()" round no-caps flat />
+      <q-btn
+        class="language-btn q-mr-sm"
+        icon="language"
+        size="md"
+        @click="chooseLanguage()"
+        round
+        no-caps
+        flat
+      />
 
       <q-btn-dropdown
-        class="account-btn text-black"
+        class="account-btn no-hover text-black"
         color="white"
         icon="menu"
         dropdown-icon="account_circle"
         no-icon-animation
         rounded
         no-caps
+        dense
       >
         <q-list>
           <q-item clickable v-close-popup>
@@ -63,6 +73,8 @@
 
 <script lang="ts" setup>
 import { Dialog } from 'quasar';
+
+// Components
 import LangDialog from 'src/components/LangDialog.vue';
 
 const chooseLanguage = () => {
@@ -74,18 +86,41 @@ const chooseLanguage = () => {
 
 <style lang="scss">
 .home-header {
+  background-color: black;
+
   .q-toolbar {
     height: 80px;
-    padding: 0 136px;
+    padding: 0 7%;
 
-    @media (max-width: $breakpoint-lg-max) {
-      padding: 0 64px;
+    @media (min-width: $breakpoint-lg-min) and (max-width: $breakpoint-lg-max) {
+      padding: 0 70px;
     }
-  }
 
-  .account-btn {
-    img {
-      border-radius: 100%;
+    @media (min-width: $breakpoint-md-min) and (max-width: $breakpoint-md-max) {
+      padding: 0 32px;
+    }
+
+    @media (max-width: $breakpoint-sm-max) {
+      padding: 0 26px;
+    }
+
+    .host-btn {
+      font-weight: 500 !important;
+      font-size: 14px;
+    }
+
+    .account-btn {
+      font-size: 14px;
+      padding: 6px 4px 6px 10px;
+
+      .q-btn-dropdown__arrow {
+        font-size: 34px !important;
+        color: grey;
+      }
+
+      .q-icon {
+        font-size: 20px;
+      }
     }
   }
 }

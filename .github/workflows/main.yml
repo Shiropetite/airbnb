@@ -34,9 +34,6 @@ jobs:
       - name: Build SPA
         run: yarn build
 
-      - name: ls
-        run: ls
-
       - name: Upload dist file
         uses: actions/upload-artifact@v3
         with:

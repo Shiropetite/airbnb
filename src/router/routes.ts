@@ -7,7 +7,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '',
         components: {
-          header: () => import('src/pages/home/components/HomeHeader.vue'),
+          header: () => import('src/components/home/Header.vue'),
           default: () => import('src/pages/home/Index.vue')
         }
       }
