@@ -1,10 +1,10 @@
 <template>
-  <div class="navbar row justify-center">
+  <div class="gt-xs navbar row justify-center">
     <div
       class="row justify-center"
       :class="modelValue === Options.PLACE_TO_STAY ? 'selected' : 'line-btn'"
       data-cy="place-to-stay"
-      style="width: 150px"
+      :style="$q.screen.name === 'md' ? 'width: 140px' : 'width: 150px'"
     >
       <q-btn
         class="col-12"
@@ -21,7 +21,7 @@
       class="row justify-center"
       :class="modelValue === Options.EXPERIENCES ? 'selected' : 'line-btn'"
       data-cy="experiences"
-      style="width: 120px"
+      :style="$q.screen.name === 'md' ? 'width: 80px' : 'width: 120px'"
     >
       <q-btn
         class="col-12"
@@ -34,7 +34,10 @@
       <div class="line"></div>
     </div>
 
-    <div class="line-btn row justify-center" style="width: 182px">
+    <div
+      class="line-btn row justify-center"
+      :style="$q.screen.name === 'md' ? 'width: 170px' : 'width: 182px'"
+    >
       <!--  to="/s/experiences/online" -->
       <q-btn class="col-12 no-hover" :label="$t('online-experiences')" rounded no-caps flat />
       <div class="line"></div>
@@ -58,6 +61,23 @@ const emits = defineEmits<{ (e: 'update:modelValue', value: Options): void }>();
   z-index: 2000;
   transform: translate(-50%, 0);
   color: white;
+
+  .q-btn {
+    font-weight: 300 !important;
+  }
+
+  @media (min-width: $breakpoint-md-min) and (max-width: $breakpoint-md-max) {
+    .q-btn {
+      font-size: 14px;
+      font-weight: 500 !important;
+    }
+  }
+
+  @media (min-width: $breakpoint-sm-min) and (max-width: $breakpoint-sm-max) {
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
 
   // remove default quasar hover
   .q-focus-helper {

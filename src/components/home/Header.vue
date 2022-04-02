@@ -111,7 +111,7 @@ const chooseLanguage = () => {
 
     .account-btn {
       font-size: 14px;
-      padding: 6px 4px 6px 10px;
+      padding: 4px 4px 4px 10px;
 
       .q-btn-dropdown__arrow {
         font-size: 34px !important;
