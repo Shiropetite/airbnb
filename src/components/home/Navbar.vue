@@ -3,6 +3,7 @@
     <div
       class="row justify-center"
       :class="modelValue === Options.PLACE_TO_STAY ? 'selected' : 'line-btn'"
+      data-cy="place-to-stay"
       style="width: 150px"
     >
       <q-btn
@@ -19,6 +20,7 @@
     <div
       class="row justify-center"
       :class="modelValue === Options.EXPERIENCES ? 'selected' : 'line-btn'"
+      data-cy="experiences"
       style="width: 120px"
     >
       <q-btn
@@ -41,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Options } from '../model';
+import { Options } from 'src/models/search';
 
 defineProps<{ modelValue: Options }>();
 

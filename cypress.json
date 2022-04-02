@@ -5,10 +5,11 @@
   "pluginsFile": "test/cypress/plugins/index.ts",
   "screenshotsFolder": "test/cypress/screenshots",
   "supportFile": "test/cypress/support/index.ts",
-  "video": false,
+  "videosFolder": "test/cypress/videos",
+  "video": true,
   "component": {
-    "componentFolder": "test/cypress/integration",
+    "componentFolder": "src",
     "testFiles": "**/*.spec.ts",
-    "supportFile": "test/cypress/support/unit.ts"
+    "supportFile": "test/cypress/support/component.ts"
   }
 }

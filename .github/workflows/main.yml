@@ -100,8 +100,11 @@ jobs:
       - name: Install
         run: yarn install
 
-      - name: Test
-        run: yarn test:cypress
+      - name: Test component integration
+        run: yarn test:component:ci
+
+      - name: Test E2E
+        run: yarn test:e2e:ci
 
   deploy:
     needs: [test-cypress, test-unit]

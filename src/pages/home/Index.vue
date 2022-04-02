@@ -1,6 +1,7 @@
 <template>
   <q-page class="bg-black">
-    <navbar-vue v-model="optionSelected" />
+    <navbar v-model="optionSelected" />
+
     <div class="row justify-center">
       <search-place v-if="optionSelected === 'place-to-stay'" />
       <search-experience v-else />
@@ -10,11 +11,15 @@
 </template>
 
 <script lang="ts" setup>
+// Libs
 import { Ref, ref } from 'vue';
 
-import { Options } from './model';
+// Model
+import { Options } from 'src/models/search';
 
-import NavbarVue from './components/Navbar.vue';
+
+// Components
+import Navbar from 'src/components/home/Navbar.vue';
 import SearchPlace from 'src/pages/home/components/SearchPlace.vue';
 import SearchExperience from 'src/pages/home/components/SearchExperience.vue';
 

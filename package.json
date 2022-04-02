@@ -9,8 +9,10 @@
     "build": "quasar build",
     "dev": "quasar dev",
     "test:jest": "jest",
-    "test:cypress": "cypress run-ct",
-    "test:cypress:cli": "cypress open-ct"
+    "test:e2e": "cross-env NODE_ENV=test start-test \"quasar dev\" http-get://localhost:8080 \"cypress open\"",
+    "test:e2e:ci": "cross-env NODE_ENV=test start-test \"quasar dev\" http-get://localhost:8080 \"cypress run\"",
+    "test:component": "cross-env NODE_ENV=test cypress open-ct",
+    "test:component:ci": "cross-env NODE_ENV=test cypress run-ct"
   },
   "dependencies": {
     "@quasar/extras": "^1.13.3",
@@ -22,13 +24,14 @@
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
+    "@cypress/vue": "^3.1.1",
     "@quasar/app": "^3.3.3",
     "@quasar/quasar-app-extension-testing": "^2.0.2",
-    "@quasar/quasar-app-extension-testing-e2e-cypress": "^4.0.1",
+    "@quasar/quasar-app-extension-testing-e2e-cypress": "^4.1.0",
     "@quasar/quasar-app-extension-testing-unit-jest": "^3.0.0-alpha.8",
     "@types/jest": "^27.4.1",
     "@types/node": "^12.20.21",
-    "@cypress/vue": "^3.1.1"
+    "eslint-plugin-cypress": "^2.11.3"
   },
   "browserslist": [
     "last 10 Chrome versions",
