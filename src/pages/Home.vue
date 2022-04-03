@@ -1,11 +1,9 @@
 <template>
-  <q-page class="bg-black">
+  <q-page class="home bg-black">
     <navbar v-model="optionSelected" />
 
-    <div class="row justify-center">
-      <search-place v-if="optionSelected === 'place-to-stay'" />
-      <search-experience v-else />
-    </div>
+    <search-bar :model-value="optionSelected" />
+
     <div class="row items-center justify-evenly text-white">Home</div>
   </q-page>
 </template>
@@ -17,14 +15,24 @@ import { Ref, ref } from 'vue';
 // Model
 import { Options } from 'src/models/search';
 
-
 // Components
 import Navbar from 'src/components/home/Navbar.vue';
-import SearchPlace from 'src/pages/home/components/SearchPlace.vue';
-import SearchExperience from 'src/pages/home/components/SearchExperience.vue';
+import SearchBar from 'src/components/home/search-bar/Index.vue';
 
 const optionSelected: Ref<Options> = ref(Options.PLACE_TO_STAY);
 
 </script>
 <style lang="scss">
+.home {
+  padding: 16px 24px;
+
+  @media (min-width: $breakpoint-sm-min) {
+    padding-top: 0;
+  }
+
+  @media (min-width: $breakpoint-sm-min) and (max-width: $breakpoint-sm-max) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
 </style>

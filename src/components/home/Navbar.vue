@@ -61,12 +61,15 @@ const emits = defineEmits<{ (e: 'update:modelValue', value: Options): void }>();
   z-index: 2000;
   transform: translate(-50%, 0);
   color: white;
+  padding-bottom: 20px;
 
   .q-btn {
     font-weight: 300 !important;
   }
 
   @media (min-width: $breakpoint-md-min) and (max-width: $breakpoint-md-max) {
+    top: -58px;
+
     .q-btn {
       font-size: 14px;
       font-weight: 500 !important;

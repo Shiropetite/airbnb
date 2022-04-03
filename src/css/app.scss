@@ -1,8 +1,7 @@
 @import "./search.scss";
 
 body {
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-    Helvetica Neue, sans-serif;
+  font-family: Roboto;
 }
 
 // Text
@@ -31,6 +30,10 @@ h2 {
   .q-ripple {
     display: none;
   }
+}
+
+.q-btn:before {
+  box-shadow: none !important;
 }
 
 .no-hover {
