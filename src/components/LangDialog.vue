@@ -2,7 +2,7 @@
   <q-dialog ref="dialogRef">
     <q-card class="lang-dialog" style="border-radius: 12px">
       <q-card-section>
-        <q-btn icon="close" @click="onDialogCancel()" round flat />
+        <q-btn icon="close" @click="onDialogCancel()" data-cy="close" round flat />
       </q-card-section>
       <q-card-section>
         <h2>{{ $t('choose_language') }}</h2>
@@ -11,6 +11,7 @@
           <q-item
             v-for="language in localeOptions"
             class="q-pa-sm"
+            :data-cy="language.test"
             :class="locale === language.value ? 'selected' : ''"
             @click="assign(language.value)"
             :clickable="locale !== language.value"
@@ -34,8 +35,8 @@ const { dialogRef, onDialogCancel } = useDialogPluginComponent();
 const { locale } = useI18n({ useScope: 'global' })
 
 const localeOptions = [
-  { value: 'fr-FR', label: 'Français', country: 'France' },
-  { value: 'en-US', label: 'English', country: 'United States' },
+  { value: 'fr-FR', label: 'Français', country: 'France', test: 'french' },
+  { value: 'en-US', label: 'English', country: 'United States', test: 'english' },
 ]
 
 const assign = (value: string) => {

@@ -1,8 +1,9 @@
 .search {
+  background-color: white;
   border-radius: 32px;
   border: solid 1px #ddd;
   color: #222;
-  width: 900px;
+  width: 850px;
   height: 64px;
 
   .input {
@@ -52,6 +53,14 @@
     .q-ripple {
       display: none;
     }
+  }
+
+  .input:focus-within {
+    background-color: white;
+  }
+
+  .input:focus-within ~ .input {
+    background-color: rgb(238, 238, 238);
   }
 
   .input:hover {

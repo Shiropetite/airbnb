@@ -36,10 +36,18 @@
 
     <div
       class="line-btn row justify-center"
+      data-cy="online-experiences"
       :style="$q.screen.name === 'md' ? 'width: 170px' : 'width: 182px'"
     >
       <!--  to="/s/experiences/online" -->
-      <q-btn class="col-12 no-hover" :label="$t('online-experiences')" rounded no-caps flat />
+      <q-btn
+        class="col-12 no-hover"
+        :label="$t('online-experiences')"
+        :to="{ name: 'online-experiences' }"
+        rounded
+        no-caps
+        flat
+      />
       <div class="line"></div>
     </div>
   </div>
@@ -61,12 +69,15 @@ const emits = defineEmits<{ (e: 'update:modelValue', value: Options): void }>();
   z-index: 2000;
   transform: translate(-50%, 0);
   color: white;
+  padding-bottom: 20px;
 
   .q-btn {
     font-weight: 300 !important;
   }
 
   @media (min-width: $breakpoint-md-min) and (max-width: $breakpoint-md-max) {
+    top: -58px;
+
     .q-btn {
       font-size: 14px;
       font-weight: 500 !important;

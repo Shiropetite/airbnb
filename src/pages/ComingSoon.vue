@@ -1,11 +1,9 @@
 <template>
   <div class="fullscreen bg-black text-white text-center q-pa-md flex flex-center">
     <div>
-      <div style="font-size: 20vh">404</div>
-      <div class="text-h2" style="opacity:.4">Oops. Nothing here...</div>
-
+      <img src="logo-pink.png" />
+      <h1>Coming soon...</h1>
       <q-btn
-        class="q-mt-xl"
         color="primary"
         label="Retourner à l'accueil"
         :to="{ name: 'home' }"
@@ -16,5 +14,3 @@
     </div>
   </div>
 </template>
-
-
