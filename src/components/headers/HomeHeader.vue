@@ -1,18 +1,26 @@
 <template>
   <q-header class="gt-xs home-header">
     <q-toolbar>
-      <q-btn class="no-hover q-py-md" to="/" rounded no-caps flat>
+      <q-btn data-cy="logo" class="no-hover q-py-md" to="/" rounded no-caps flat>
         <q-img class="gt-md" src="logo-white.png" height="32px" width="103.5px" />
         <q-img class="lt-lg" src="logo-small-white.png" height="34px" width="31.5px" />
       </q-btn>
 
       <q-space />
 
-      <!-- to="/host/homes" -->
-      <q-btn class="host-btn" :label="$t('become_host')" rounded no-caps flat />
+      <q-btn
+        data-cy="host"
+        class="host-btn"
+        :to="{ name: 'host' }"
+        :label="$t('become_host')"
+        rounded
+        no-caps
+        flat
+      />
 
       <q-btn
         class="language-btn q-mr-sm"
+        data-cy="language"
         icon="language"
         size="md"
         @click="chooseLanguage()"
@@ -25,6 +33,7 @@
         class="account-btn no-hover text-black"
         color="white"
         icon="menu"
+        data-cy="account"
         dropdown-icon="account_circle"
         no-icon-animation
         rounded
@@ -45,22 +54,25 @@
           </q-item>
 
           <q-separator />
-          <!-- to="/host/homes" -->
-          <q-item clickable v-close-popup>
+
+          <q-item data-cy="menu-host" :to="{ name: 'host' }" clickable v-close-popup>
             <q-item-section>
               <q-item-label>{{ $t('host_home') }}</q-item-label>
             </q-item-section>
           </q-item>
 
-          <!-- to="/host/experiences?from_nav=1" -->
-          <q-item clickable v-close-popup>
+          <q-item
+            data-cy="menu-host-experience"
+            :to="{ name: 'host-experience' }"
+            clickable
+            v-close-popup
+          >
             <q-item-section>
               <q-item-label>{{ $t('host_experience') }}</q-item-label>
             </q-item-section>
           </q-item>
 
-          <!-- to="/help" -->
-          <q-item clickable v-close-popup>
+          <q-item data-cy="menu-help" :to="{ name: 'help' }" clickable v-close-popup>
             <q-item-section>
               <q-item-label>{{ $t('help') }}</q-item-label>
             </q-item-section>

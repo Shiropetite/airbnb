@@ -36,10 +36,18 @@
 
     <div
       class="line-btn row justify-center"
+      data-cy="online-experiences"
       :style="$q.screen.name === 'md' ? 'width: 170px' : 'width: 182px'"
     >
       <!--  to="/s/experiences/online" -->
-      <q-btn class="col-12 no-hover" :label="$t('online-experiences')" rounded no-caps flat />
+      <q-btn
+        class="col-12 no-hover"
+        :label="$t('online-experiences')"
+        :to="{ name: 'online-experiences' }"
+        rounded
+        no-caps
+        flat
+      />
       <div class="line"></div>
     </div>
   </div>
